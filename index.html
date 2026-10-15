@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none';">
+<meta name="robots" content="noindex">
+<title>Laal Jhandi — Red Flag &amp; Digital Safety Guide</title>
+<style>
+  :root{
+    --charcoal:#222326;
+    --ink:#2b2b2e;
+    --cream:#f7f2e8;
+    --paper:#fffcf5;
+    --line:#e4dccb;
+    --red:#a33a3a;
+    --red-deep:#832d2d;
+    --red-soft:#f4e1de;
+    --muted:#6b675f;
+    --ok:#4d6b57;
+    --radius:14px;
+    --ur-font:"Noto Nastaliq Urdu","Jameel Noori Nastaleeq","Alvi Nastaleeq","Noto Naskh Arabic","Segoe UI","Tahoma",serif;
+    --en-font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--cream);color:var(--ink);
+    font-family:var(--en-font);font-size:16px;line-height:1.6;
+  }
+  a{color:var(--red-deep)}
+  a:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+
+  /* Language handling */
+  .ur{display:block;font-family:var(--ur-font);direction:rtl;text-align:right;line-height:2.1;font-size:1.08em}
+  .en{display:block;direction:ltr;text-align:left}
+  .ur + .en{font-size:.92em;color:var(--muted);margin-top:2px}
+  [data-lang="ur"] .en{display:none}
+  [data-lang="en"] .ur{display:none}
+  [data-lang="en"] .ur + .en, [data-lang="ur"] .ur + .en{color:inherit;font-size:1em}
+  [data-lang="en"] .en{color:inherit;font-size:1em}
+
+  .wrap{max-width:880px;margin:0 auto;padding:0 18px}
+
+  /* Quick exit */
+  .topbar{
+    position:sticky;top:0;z-index:50;background:var(--charcoal);color:var(--cream);
+    border-bottom:1px solid #000;
+  }
+  .topbar .wrap{display:flex;gap:10px;align-items:center;justify-content:space-between;padding-top:8px;padding-bottom:8px;flex-wrap:wrap}
+  .langs{display:flex;gap:6px}
+  .chip{
+    appearance:none;border:1px solid #55565c;background:transparent;color:var(--cream);
+    padding:5px 12px;border-radius:999px;font:inherit;font-size:.85rem;cursor:pointer;
+  }
+  .chip[aria-pressed="true"]{background:var(--cream);color:var(--charcoal);border-color:var(--cream)}
+  .exit{
+    appearance:none;border:0;background:var(--red);color:#fff;font:inherit;font-weight:600;font-size:.88rem;
+    padding:7px 14px;border-radius:999px;cursor:pointer;
+  }
+  .exit:hover{background:var(--red-deep)}
+
+  /* Privacy banner */
+  .privacy{background:var(--red-soft);border-bottom:1px solid #e6c6c1;color:#4a1f1f}
+  .privacy .wrap{padding-top:12px;padding-bottom:12px;font-size:.95rem}
+  .privacy strong{color:var(--red-deep)}
+  .privacy small{display:block;margin-top:4px;color:#6a3b3b;font-size:.82rem}
+
+  /* Header */
+  header.hero{background:var(--charcoal);color:var(--cream);padding:44px 0 40px}
+  .flagmark{
+    width:46px;height:46px;border-radius:12px;background:var(--red);display:inline-grid;place-items:center;margin-bottom:14px;
+  }
+  .flagmark svg{width:24px;height:24px;fill:#fff}
+  header.hero h1{margin:0 0 10px;font-size:clamp(1.55rem,4.6vw,2.3rem);line-height:1.25;font-weight:700;letter-spacing:-.01em}
+  header.hero h1 .ur-inline{font-family:var(--ur-font);font-weight:700;line-height:1.6}
+  header.hero p{margin:0;max-width:60ch;color:#cfc9bb}
+  header.hero .ur{color:#e9e2d2}
+  header.hero .ur + .en{color:#b9b3a5}
+
+  main{padding:28px 0 8px}
+  section{margin-bottom:30px}
+  h2{margin:0 0 4px;font-size:1.3rem;line-height:1.3}
+  .sec-sub{color:var(--muted);margin:0 0 14px}
+
+  .card{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+    box-shadow:0 1px 0 rgba(0,0,0,.02);
+  }
+
+  /* Analyzer */
+  label.lbl{display:block;font-weight:600;margin-bottom:8px}
+  textarea{
+    width:100%;min-height:190px;resize:vertical;border:1px solid #cfc6b3;border-radius:12px;
+    background:#fff;color:var(--ink);padding:14px;font:inherit;font-size:1rem;line-height:1.7;
+  }
+  textarea::placeholder{color:#9a9488}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+  .btn{
+    appearance:none;border:1px solid var(--charcoal);background:var(--charcoal);color:var(--cream);
+    padding:11px 20px;border-radius:10px;font:inherit;font-weight:600;cursor:pointer;
+  }
+  .btn:hover{background:#000}
+  .btn.alt{background:transparent;color:var(--charcoal)}
+  .btn.alt:hover{background:#efe8d8}
+  .count{margin-left:auto;font-size:.82rem;color:var(--muted)}
+
+  /* Results */
+  #results{margin-top:20px}
+  .summary{
+    border-radius:var(--radius);padding:16px 18px;border:1px solid var(--line);background:var(--paper);
+    border-left:6px solid var(--muted);
+  }
+  .summary.none{border-left-color:var(--ok)}
+  .summary.some{border-left-color:#c58a3a}
+  .summary.high{border-left-color:var(--red)}
+  .summary h3{margin:0 0 4px;font-size:1.1rem}
+  .summary .note{margin-top:8px;font-size:.88rem;color:var(--muted)}
+  .urgent{
+    margin-top:12px;padding:10px 12px;border-radius:10px;background:var(--red-soft);color:#4a1f1f;font-size:.93rem;
+  }
+  .hl-box{
+    margin-top:14px;padding:14px;border-radius:12px;background:#fff;border:1px solid var(--line);
+    white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere;line-height:1.9;
+  }
+  .hl-box .ur-text{font-family:var(--ur-font)}
+  mark.hl{background:#f3c9c3;color:#3b1414;border-radius:4px;padding:1px 3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  mark.hl sup{font-size:.62em;font-weight:700;color:var(--red-deep);margin-left:2px;margin-right:2px}
+  .hl-title{margin:16px 0 0;font-size:.9rem;font-weight:600;color:var(--muted)}
+
+  .flag{
+    margin-top:14px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  }
+  .flag-head{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;background:#faf3e6;border-bottom:1px solid var(--line)}
+  .badge{
+    flex:none;min-width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;font-weight:700;
+    display:grid;place-items:center;font-size:.9rem;margin-top:2px
+  }
+  .flag-head h4{margin:0;font-size:1.02rem;line-height:1.45}
+  .flag-body{padding:14px 16px}
+  .why{margin:0 0 12px}
+  .matched{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px}
+  .matched span{background:var(--red-soft);color:#4a1f1f;border-radius:999px;padding:2px 10px;font-size:.8rem;direction:auto}
+  .todo-title{font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:.05em;color:var(--red-deep);margin:0 0 6px}
+  ul.todo{margin:0;padding:0;list-style:none}
+  ul.todo li{padding:10px 0;border-top:1px dashed var(--line)}
+  ul.todo li:first-child{border-top:0;padding-top:2px}
+
+  /* Guide */
+  .kit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:6px}
+  .kit-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .kit-item .n{font-weight:700;color:var(--red);font-size:.8rem;letter-spacing:.06em}
+  .callout{margin-top:14px;padding:14px;border-radius:12px;background:#efe8d8;font-size:.95rem}
+
+  /* Footer */
+  footer{background:var(--charcoal);color:var(--cream);padding:36px 0 40px;margin-top:20px}
+  footer h2{color:#fff}
+  footer .sec-sub{color:#b9b3a5}
+  footer a{color:#f0c9c4}
+  .res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:16px}
+  .res{background:#2c2d31;border:1px solid #3a3b40;border-radius:var(--radius);padding:16px}
+  .res h3{margin:0 0 6px;font-size:1.02rem;color:#fff}
+  .res p{margin:6px 0;font-size:.92rem;color:#d8d2c4}
+  .res .ur{color:#eee7d6}
+  .res .ur + .en{color:#bdb7a8}
+  .big{font-size:1.35rem;font-weight:700;color:#fff;text-decoration:none;display:inline-block;margin:2px 0}
+  .emerg{margin-top:16px;padding:12px 14px;border-radius:12px;background:var(--red);color:#fff}
+  .emerg a{color:#fff;font-weight:700}
+  .fine{margin-top:18px;font-size:.8rem;color:#9f9a8d}
+
+  @media (max-width:520px){
+    .wrap{padding:0 14px}
+    header.hero{padding:32px 0 28px}
+    .btn{flex:1 1 auto;text-align:center}
+    .count{width:100%;margin-left:0}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .flag{animation:rise .25s ease-out both}
+    @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  }
+</style>
+</head>
+<body data-lang="both">
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="langs" role="group" aria-label="Language">
+      <button class="chip" data-set-lang="both" aria-pressed="true">اردو + English</button>
+      <button class="chip" data-set-lang="ur" aria-pressed="false">اردو</button>
+      <button class="chip" data-set-lang="en" aria-pressed="false">English</button>
+    </div>
+    <button class="exit" id="quickExit" title="Clears this page and leaves immediately (or press Esc twice)">
+      Quick Exit · فوری باہر نکلیں ✕
+    </button>
+  </div>
+</div>
+
+<div class="privacy" role="note">
+  <div class="wrap">
+    <strong>Privacy First:</strong> This tool runs entirely in your browser. We never save, store, upload, or read your text or chats.
+    <span class="ur" style="font-size:1em"><strong>پرائیویسی سب سے پہلے:</strong> یہ ٹول مکمل طور پر آپ کے براؤزر میں چلتا ہے۔ ہم آپ کا متن یا چیٹس نہ محفوظ کرتے ہیں، نہ اپ لوڈ کرتے ہیں، اور نہ ہی پڑھتے ہیں۔</span>
+    <small>
+      <span class="en">Tip: use a private/incognito window, and press Quick Exit (or Esc twice) if someone may see your screen. Closing the tab erases everything typed here.</span>
+      <span class="ur">مشورہ: پرائیویٹ/انکوگنیٹو ونڈو استعمال کریں، اور اگر کوئی آپ کی اسکرین دیکھ سکتا ہو تو "فوری باہر نکلیں" دبائیں (یا Esc دو بار)۔ ٹیب بند کرتے ہی یہاں لکھا سب کچھ مٹ جاتا ہے۔</span>
+    </small>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="flagmark" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M5 2h2v20H5zM8 3h11l-3 4.5L19 12H8z"/></svg>
+    </div>
+    <h1>Laal Jhandi (<span class="ur-inline" lang="ur">لال جھنڈی</span>) — Red Flag &amp; Digital Safety Guide</h1>
+    <p class="ur" lang="ur">کراچی کے لیے اردو-اول رہنما: کنٹرول اور بدسلوکی کی علامات پہچانیں، اپنے فون پر ثبوت محفوظ رکھیں، اور مدد تک پہنچیں۔</p>
+    <p class="en">An Urdu-first guide for Karachi: spot signs of coercive control, protect yourself and keep evidence on your own phone, and know where to get help.</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section aria-labelledby="analyzer-h">
+      <h2 id="analyzer-h"><span class="ur" lang="ur">چیٹ اینالائزر</span><span class="en">Chat Analyzer</span></h2>
+      <p class="sec-sub">
+        <span class="ur" lang="ur">کوئی میسج پیسٹ کریں یا صورتحال بیان کریں۔ اردو، انگریزی اور رومن اردو، تینوں چلتی ہیں۔</span>
+        <span class="en">Paste a message or describe what is happening. Urdu, English and Roman Urdu all work.</span>
+      </p>
+      <div class="card">
+        <label class="lbl" for="input">
+          <span class="ur" lang="ur">آپ کا متن</span><span class="en">Your text</span>
+        </label>
+        <textarea id="input" dir="auto" maxlength="20000" spellcheck="false" autocomplete="off" autocapitalize="off"
+          placeholder="e.g. “If you really loved me, you’d share your live location…”   /   مثلاً: ’اگر تم مجھ سے محبت کرتیں تو فون دکھاؤ‘"></textarea>
+        <div class="actions">
+          <button class="btn" id="analyzeBtn">Analyze Chat · جانچیں</button>
+          <button class="btn alt" id="clearBtn">Clear · صاف کریں</button>
+          <button class="btn alt" id="exampleBtn">Example · مثال</button>
+          <span class="count" id="count" aria-live="off">0 / 20000</span>
+        </div>
+        <div id="results" aria-live="polite"></div>
+      </div>
+      <p class="sec-sub" style="margin-top:10px;font-size:.85rem">
+        <span class="ur" lang="ur">یہ ٹول صرف الفاظ اور جملوں کے نمونے ڈھونڈتا ہے۔ یہ لہجہ، پس منظر یا طنز نہیں سمجھ سکتا، اور یہ کوئی تشخیص نہیں۔ آپ کا اپنا احساس سب سے اہم ہے۔</span>
+        <span class="en">This tool only looks for wording patterns. It can’t read tone, context or sarcasm, and it is not a diagnosis. Your own feelings matter most.</span>
+      </p>
+    </section>
+
+    <section aria-labelledby="guide-h">
+      <h2 id="guide-h"><span class="ur" lang="ur">اپنے فون پر ثبوت کیسے محفوظ کریں</span><span class="en">Local Protection Guide: your evidence kit</span></h2>
+      <p class="sec-sub">
+        <span class="ur" lang="ur">یہ بنیادی اقدامات ہر صورتحال میں کام آتے ہیں، چاہے اینالائزر کچھ ملے یا نہ ملے۔</span>
+        <span class="en">These basics apply to almost every situation, whether or not the analyzer finds anything.</span>
+      </p>
+      <div class="card">
+        <div class="kit-grid">
+          <div class="kit-item"><div class="n">01</div>
+            <span class="ur" lang="ur">اسکرین شاٹ لیں جس میں تاریخ اور وقت نظر آئے۔</span>
+            <span class="en">Take screenshots with the date and time visible.</span></div>
+          <div class="kit-item"><div class="n">02</div>
+            <span class="ur" lang="ur">بھیجنے والے کا نمبر یا ہینڈل (یوزر نیم) لکھ لیں۔</span>
+            <span class="en">Record the sender’s number or handle.</span></div>
+          <div class="kit-item"><div class="n">03</div>
+            <span class="ur" lang="ur">تحریری ٹائم لائن بنائیں: کب، کیا ہوا، کس نے کیا کہا۔</span>
+            <span class="en">Write a timeline: when, what happened, who said what.</span></div>
+          <div class="kit-item"><div class="n">04</div>
+            <span class="ur" lang="ur">تھریڈ کبھی ڈیلیٹ نہ کریں، چاہے کوئی کتنا ہی کہے۔</span>
+            <span class="en">Never delete the thread, no matter who asks.</span></div>
+          <div class="kit-item"><div class="n">05</div>
+            <span class="ur" lang="ur">نقل ایسی جگہ رکھیں جہاں صرف آپ کی رسائی ہو: نیا ای میل، یا کسی قابلِ اعتماد شخص کا فون۔</span>
+            <span class="en">Keep a copy somewhere only you control: a new private email, or a trusted person’s device.</span></div>
+          <div class="kit-item"><div class="n">06</div>
+            <span class="ur" lang="ur">کم از کم ایک قابلِ اعتماد شخص کو بتائیں، اور ایک محفوظ رابطہ نمبر زبانی یاد رکھیں۔</span>
+            <span class="en">Tell at least one trusted person, and memorise one safe contact number.</span></div>
+        </div>
+        <div class="callout">
+          <span class="ur" lang="ur"><strong>اہم:</strong> اگر کوئی آپ کا فون چیک کرتا ہے تو ثبوت کے اسکرین شاٹ اپنی گیلری میں نہ چھوڑیں؛ انہیں فوراً محفوظ جگہ منتقل کریں۔ اور کنٹرول کرنے والے شخص کا سامنا کرنے یا اچانک سب کچھ بند کرنے سے پہلے اپنی حفاظت کا سوچیں، کیونکہ اچانک تبدیلی صورتحال بگاڑ سکتی ہے۔</span>
+          <span class="en"><strong>Important:</strong> if someone checks your phone, don’t leave evidence screenshots in your gallery; move them somewhere safe right away. And think through your safety before confronting a controlling person or suddenly switching everything off, since abrupt changes can escalate things. A helpline can help you plan.</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer id="help">
+  <div class="wrap">
+    <h2><span class="ur" lang="ur">مدد اور ہیلپ لائنز</span><span class="en">Crisis &amp; Support Resources (Pakistan)</span></h2>
+    <p class="sec-sub">
+      <span class="ur" lang="ur">آپ اکیلے نہیں ہیں۔ مدد مانگنا کمزوری نہیں۔</span>
+      <span class="en">You are not alone. Asking for help is not weakness.</span>
+    </p>
+
+    <div class="emerg">
+      <span class="ur" lang="ur"><strong>فوری خطرہ؟</strong> پولیس: <a href="tel:15">15</a></span>
+      <span class="en"><strong>In immediate danger?</strong> Call the police on <a href="tel:15">15</a>.</span>
+    </div>
+
+    <div class="res-grid">
+      <div class="res">
+        <h3>NCCIA — National Cyber Crime Investigation Agency</h3>
+        <a class="big" href="tel:1799">1799</a>
+        <p class="ur" lang="ur">سائبر کرائم کی شکایت: بلیک میلنگ، ہراسانی، تصاویر کی دھمکی، ہیکنگ۔ قریبی NCCIA سرکل آفس بھی جایا جا سکتا ہے۔</p>
+        <p class="en">Report cyber blackmail, harassment, image threats and hacking. You can also visit your nearest NCCIA circle office.</p>
+        <p class="ur" lang="ur"><strong>شکایت کے لیے ساتھ رکھیں:</strong> اسکرین شاٹس (تاریخ/وقت سمیت)، فون نمبر یا ہینڈل، رقم کی ادائیگی کی تفصیل، اور ٹائم لائن۔</p>
+        <p class="en"><strong>Bring with your complaint:</strong> screenshots (date/time visible), phone numbers or handles, any transaction details, and your timeline.</p>
+        <p><a href="https://nccia.gov.pk" target="_blank" rel="noopener noreferrer">nccia.gov.pk</a></p>
+      </div>
+
+      <div class="res">
+        <h3>DRF — Digital Rights Foundation<br><span style="font-weight:500;font-size:.9rem;color:#d8d2c4">Cyber Harassment / Digital Security Helpline</span></h3>
+        <a class="big" href="tel:080039393">0800-39393</a>
+        <p class="ur" lang="ur">مفت، رازدارانہ، اور صنفی حساسیت کے ساتھ۔ روزانہ صبح 9 تا شام 5 بجے۔</p>
+        <p class="en">Free and confidential. Open daily, 9am–5pm (toll-free).</p>
+        <p class="ur" lang="ur"><strong>معاونت:</strong> ڈیجیٹل سیکیورٹی مدد، قانونی رہنمائی، نفسیاتی سہارا، اور NCCIA کو شکایت میں معاونت۔ کال نہ کر سکیں تو ای میل یا سوشل میڈیا پر پیغام بھیجیں۔</p>
+        <p class="en"><strong>Support structure:</strong> digital security help, legal guidance, psychological support, and help referring your case to NCCIA. If you can’t call, email or DM them.</p>
+        <p><a href="mailto:helpdesk@digitalrightsfoundation.pk">helpdesk@digitalrightsfoundation.pk</a><br>
+           <a href="https://digitalrightsfoundation.pk" target="_blank" rel="noopener noreferrer">digitalrightsfoundation.pk</a></p>
+      </div>
+
+      <div class="res">
+        <h3>StopNCII.org</h3>
+        <a class="big" href="https://stopncii.org" target="_blank" rel="noopener noreferrer">stopncii.org</a>
+        <p class="ur" lang="ur">اگر آپ کی نجی تصاویر یا ویڈیوز بغیر اجازت پھیلائی گئی ہوں یا پھیلانے کی دھمکی ہو، تو یہ سروس ان کا "ڈیجیٹل فنگر پرنٹ" بناتی ہے تاکہ شریک پلیٹ فارمز انہیں بلاک کر سکیں۔ تصویر آپ کے اپنے آلے سے باہر نہیں جاتی۔</p>
+        <p class="en">If intimate images or videos have been shared, or threatened to be shared, without consent, this free tool creates a digital fingerprint (hash) on your device so participating platforms can block them. The image never leaves your device.</p>
+        <p class="en">For people under 18, use <a href="https://takeitdown.ncmec.org" target="_blank" rel="noopener noreferrer">Take It Down</a> instead.</p>
+      </div>
+    </div>
+
+    <p class="fine">
+      Contact details last checked October 2026 and can change; please confirm on the official sites. Laal Jhandi is an information tool, not legal, medical or emergency advice. Nothing you type here is sent anywhere.
+      <span class="ur" lang="ur" style="font-size:.95em;color:#9f9a8d">رابطہ تفصیلات اکتوبر 2026 میں چیک کی گئیں؛ تبدیل ہو سکتی ہیں، براہِ کرم سرکاری ویب سائٹس سے تصدیق کر لیں۔ یہ ایک معلوماتی ٹول ہے، قانونی، طبی یا ہنگامی مشورہ نہیں۔</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ------------------------------------------------------------------
+     32 patterns (12 foundational safety rules + 20 advanced manipulation/gaslighting traps).
+     ------------------------------------------------------------------ */
+  var FLAGS = [
+    {
+      id: 1, ur: "مسلسل لوکیشن شیئر کرنے یا ٹریکنگ کا مطالبہ",
+      en: "Demanding 24/7 location sharing or constant tracking",
+      whyUr: "ہر وقت آپ کی جگہ جاننا اعتماد نہیں، کنٹرول ہے۔",
+      whyEn: "Knowing where you are at every moment is control, not trust.",
+      actions: [
+        { ur: "سیٹنگز میں دیکھیں کہ کون سی ایپس اور کون سے لوگ آپ کی لوکیشن دیکھ سکتے ہیں (Google Maps، WhatsApp Live Location، Find My / Family Link)۔ کچھ بند کرنے سے پہلے اپنی حفاظت کا سوچیں، کیونکہ اچانک تبدیلی ردِعمل بھڑکا سکتی ہے۔",
+          en: "Review which apps and contacts can see your location (Google Maps, WhatsApp Live Location, Find My / Family Link). Think through your safety before switching anything off; a sudden change can provoke a reaction." },
+        { ur: "مطالبے کے میسج کا اسکرین شاٹ لیں جس میں تاریخ اور وقت نظر آئے، اور بھیجنے والے کا نمبر یا ہینڈل لکھ لیں۔",
+          en: "Screenshot the demand with the date and time visible, and note the sender’s number or handle." },
+        { ur: "ایک تحریری ٹائم لائن بنائیں: کب، کیا مانگا گیا، آپ نے کیا جواب دیا۔ تھریڈ کبھی ڈیلیٹ نہ کریں۔",
+          en: "Keep a written timeline: when, what was demanded, how you replied. Never delete the thread." }
+      ],
+      patterns: [
+        /\b(?:share|send|turn on|keep on|enable|switch on)\s+(?:me\s+)?(?:your\s+|ur\s+)?(?:live\s+|current\s+)?location\b/gi,
+        /\blive location\b/gi,
+        /\b(?:track|tracking|tracked|trace)\s+(?:you|your phone|your location|ur location|my location)\b/gi,
+        /\b(?:always|24\/7|every minute|all the time|at all times)\b.{0,25}\blocation\b/gi,
+        /\blocation\b.{0,25}\b(?:always|24\/7|all the time|at all times)\b/gi,
+        /\blocation\s+(?:bhej|share|on)\w*/gi,
+        /\bhar\s+waqt\b.{0,20}\blocation\b/gi,
+        /\bsend\s+(?:me\s+)?(?:a\s+)?(?:pic|photo|selfie|video)\s+(?:of\s+)?(?:where|to prove)/gi,
+        /لوکیشن\s*(?:بھیج|شیئر|آن|کھول)\S*/g,
+        /ہر\s*وقت.{0,15}لوکیشن/g
+      ]
+    },
+    {
+      id: 2, ur: "دوستوں، خاندان یا سماجی دائرے سے کاٹنے کی کوشش",
+      en: "Isolating you from friends, family or your social circle",
+      whyUr: "تنہائی ان لوگوں کو دور کر دیتی ہے جو صورتحال دیکھ کر آپ کی مدد کر سکتے ہیں۔",
+      whyEn: "Isolation removes the people who could notice what is happening and help.",
+      actions: [
+        { ur: "کم از کم ایک قابلِ اعتماد شخص (کزن، استاد، دوست، کاؤنسلر) کو حالات بتائیں اور اس سے باقاعدہ رابطہ رکھیں۔",
+          en: "Tell at least one trusted person (cousin, teacher, friend, counsellor) what is happening and keep a regular check-in." },
+        { ur: "لوگوں تک پہنچنے کا ایک آزاد راستہ رکھیں، مثلاً کسی دوست کا نمبر زبانی یاد رکھیں یا اسکول/یونیورسٹی کے ذریعے رابطہ رکھیں۔",
+          en: "Keep one independent way to reach people: memorise a friend’s number, or stay connected through school or university." },
+        { ur: "جن پیغامات میں آپ کو لوگوں سے ملنے یا بات کرنے سے روکا گیا ہو، ان کے اسکرین شاٹ تاریخ اور وقت سمیت محفوظ کریں۔",
+          en: "Save messages telling you not to see or speak to people, as screenshots with date and time." }
+      ],
+      patterns: [
+        /\b(?:stop|quit)\s+(?:talking|speaking|seeing|meeting|texting|hanging out)\s+(?:to|with)\b/gi,
+        /\b(?:don'?t|do not|never)\s+(?:talk|speak|meet|see|text|hang out)\s+(?:to|with)\s+(?:them|him|her|your|anyone|those|that)\b/gi,
+        /\byour\s+(?:friends?|family|parents)\s+(?:are|is)\s+(?:bad|toxic|fake|jealous|against us|against me|a bad influence)/gi,
+        /\b(?:i'?m|i am)\s+all\s+you\s+(?:need|have)\b/gi,
+        /\byou\s+(?:don'?t|do not)\s+need\s+(?:them|anyone|any one|friends|family)\b/gi,
+        /\bonly\s+(?:you\s+)?need\s+me\b/gi,
+        /\b(?:won'?t|doesn'?t|don'?t|will not)\s+(?:let|allow)\s+me\s+(?:to\s+)?(?:see|meet|talk to|speak to|speak with|talk with|go out)\b/gi,
+        /\bcut\s+(?:them|her|him|everyone|your friends|your family)\s*(?:off)?\b/gi,
+        /\b(?:dosto?n?|family|ghar\s+walon?)\s+se\s+(?:milna|baat|rabta)\s*(?:band|mat|na)\w*/gi,
+        /\b(?:unse|us\s+se|un\s+se)\s+(?:baat|milna)\s+(?:mat|na|band)\w*/gi,
+        /\bmilna\s+band\b/gi,
+        /\bbaat\s+mat\s+(?:karo|kiya karo)\b/gi,
+        /دوستوں\s*سے\s*(?:ملنا|بات)\s*(?:بند|مت)/g,
+        /ملنا\s*بند/g,
+        /بات\s*مت\s*کرو/g
+      ]
+    },
+    {
+      id: 3, ur: "فون کا پاس ورڈ مانگنا یا چیٹس کی بار بار جانچ",
+      en: "Demanding phone passwords or obsessively checking your chats",
+      whyUr: "آپ کی نجی زندگی تک مکمل رسائی کنٹرول کا ذریعہ بن جاتی ہے۔",
+      whyEn: "Full access to your private life becomes a tool of control.",
+      actions: [
+        { ur: "ہر اکاؤنٹ کا پاس ورڈ منفرد رکھیں اور دو مرحلہ تصدیق (2FA) آن کریں۔ پاس ورڈ کسی کو نہ دیں۔",
+          en: "Use a unique password for each account and turn on two-factor authentication (2FA). Don’t hand your passwords to anyone." },
+        { ur: "چیک کریں کہ آپ کے اکاؤنٹس میں کون سے ڈیوائس لاگ اِن ہیں (WhatsApp Linked Devices، Google، Instagram) اور جو انجان ہو اسے ہٹا دیں۔",
+          en: "Check which devices are logged in (WhatsApp Linked Devices, Google, Instagram) and remove any you don’t recognise." },
+        { ur: "انجان ایپس، خاص طور پر ’پیرنٹل کنٹرول‘ یا ’ٹریکر‘ ایپس، دیکھیں۔ اگر ردِعمل کا خدشہ ہو تو ہٹانے سے پہلے DRF ہیلپ لائن سے مشورہ کریں۔",
+          en: "Look for unfamiliar apps, especially “parental control” or tracker apps. If you fear a reaction, talk to the DRF helpline before removing anything." }
+      ],
+      patterns: [
+        /\b(?:give|tell|send|share|show|text)\s+(?:me\s+)?(?:your\s+|ur\s+)?(?:phone\s+|mobile\s+)?(?:password|passcode|pass code|pin|lock code)\b/gi,
+        /\bwhat'?s\s+(?:your|ur)\s+(?:phone\s+)?(?:password|passcode|pin)\b/gi,
+        /\b(?:let me|lemme|i want to|i need to|i will|i'?ll)\s+(?:see|check|go through|look through|read)\s+(?:your|ur)\s+(?:phone|chats?|messages?|dms?|whatsapp)\b/gi,
+        /\bshow me\s+(?:your\s+|ur\s+)?(?:phone|chats?|messages?|dms?|whatsapp)\b/gi,
+        /\bwho\s+(?:are|were|r)\s+(?:you|u)\s+(?:texting|chatting|talking to|messaging)\b/gi,
+        /\b(?:asks?|demands?|wants?|keeps? asking)\b.{0,20}\b(?:my|for my)\s+(?:phone\s+)?(?:password|passcode|phone)\b/gi,
+        /\b(?:checks?|checking|goes through|reads?)\s+(?:my|all my)\s+(?:phone|chats?|messages?|dms?)\b/gi,
+        /\b(?:phone|mobile)\s+(?:do|dikhao|dekhna|check)\b/gi,
+        /\bpassword\s+(?:do|batao|bhejo|share)\b/gi,
+        /\bchats?\s+(?:dikhao|dikha do|check)\b/gi,
+        /پاس\s*ورڈ\s*(?:دو|بتاؤ|بھیجو|دے)\S*/g,
+        /فون\s*(?:دکھاؤ|دو|چیک)\S*/g,
+        /چیٹ\S*\s*(?:دکھاؤ|چیک)\S*/g
+      ]
+    },
+    {
+      id: 4, ur: "شدید جذباتی دباؤ: ’اگر تم مجھ سے محبت کرتیں/کرتے تو…‘",
+      en: "Extreme guilt-tripping: “If you loved me, you would…”",
+      whyUr: "محبت کا ثبوت مانگ کر آپ کے فیصلے اور حدود چھینی جاتی ہیںـ",
+      whyEn: "Love is used as a lever to override your choices and boundaries.",
+      actions: [
+        { ur: "جو مطالبہ کیا جا رہا ہے اسے لکھیں اور خود سے پوچھیں: کیا یہ میری اپنی مرضی ہے؟ آپ کے ’نہیں‘ کو وضاحت کی ضرورت نہیں۔",
+          en: "Write the demand down and ask: is this my own choice? Your “no” doesn’t need a justification." },
+        { ur: "فوری جواب کے دباؤ میں نہ آئیں۔ ’مجھے سوچنے کا وقت چاہیے‘ مکمل اور جائز جواب ہے۔",
+          en: "Don’t answer under pressure. “I need time to think” is a complete answer." },
+        { ur: "ایسے پیغامات محفوظ رکھیں اور کسی قابلِ اعتماد شخص کو دکھائیں؛ باہر سے دیکھنے والا پیٹرن جلد پہچان لیتا ہے۔",
+          en: "Save these messages and show a trusted person; an outside eye spots the pattern quickly." }
+      ],
+      patterns: [
+        /\bif\s+you\s+(?:really\s+|truly\s+)?(?:loved|love|cared about|care about|cared for)\s+me\b/gi,
+        /\bafter\s+(?:all|everything)\s+i(?:'ve| have)?\s+(?:done|sacrificed|given)\s+(?:for|to)\s+(?:you|u)\b/gi,
+        /\byou\s+owe\s+me\b/gi,
+        /\byou(?:'re| are)\s+(?:hurting|killing|breaking)\s+me\b/gi,
+        /\bprove\s+(?:that\s+)?you\s+love\s+me\b/gi,
+        /\b(?:agar|agr)\s+(?:tum|tu|aap)\s+(?:mujh\s*se|mujhse)\s+(?:pyar|mohabbat|muhabbat|love)\b/gi,
+        /\bmere\s+liye\s+itنا\s+(?:bhi\s+)?nahi\b/gi,
+        /اگر\s*تم\s*مجھ\s*سے\s*(?:محبت|پیار)/g,
+        /میں\s*نے\s*تمہارے\s*لیے\s*کیا\s*کچھ\s*نہیں\s*کیا/g
+      ]
+    },
+    {
+      id: 5, ur: "چیٹ ڈیلیٹ کرنے یا بات چھپانے پر اصرار",
+      en: "Insisting you delete chat threads or keep things secret",
+      whyUr: "ثبوت مٹوانا اکثر بدسلوکی کو چھپانے کا حربہ ہوتا ہے۔",
+      whyEn: "Erasing evidence is a common way of hiding abuse.",
+      actions: [
+        { ur: "تھریڈ ہرگز ڈیلیٹ نہ کریں۔ اگر دباؤ ہو تو پہلے اسکرین شاٹ لیں اور نقل ایسی جگہ رکھیں جہاں صرف آپ کی رسائی ہو (قابلِ اعتماد شخص کا فون یا نیا نجی ای میل)۔",
+          en: "Do not delete the thread. If you are pressured, screenshot first and keep copies somewhere only you control (a trusted person’s device or a new private email)." },
+        { ur: "اس چیٹ میں ’Disappearing messages‘ بند رکھیں، اور چیٹ بیک اپ صرف ایسے اکاؤنٹ میں رکھیں جس تک کسی اور کی رسائی نہ ہو۔",
+          en: "Keep disappearing messages off for that chat, and back chats up only to an account nobody else can open." },
+        { ur: "ہر میسج کا نمبر/ہینڈل، تاریخ اور وقت لکھ لیں۔",
+          en: "Note the number or handle, date and time of each message." }
+      ],
+      patterns: [
+        /\bdelete\s+(?:this|the|our|these|that|all)?\s*(?:chat|chats|messages?|thread|convo|conversation|dms?|pics?|photos?|screenshots?)\b/gi,
+        /\bdelete\s+(?:it|them)\s+(?:now|right now|immediately|after|once)\b/gi,
+        /\b(?:clear|erase|wipe)\s+(?:the\s+|our\s+|this\s+)?(?:chat|chats|messages?|history)\b/gi,
+        /\bdon'?t\s+(?:tell|show|let)\s+(?:anyone|anybody|your (?:parents|family|friends)|them)\b/gi,
+        /\b(?:this|it)\s+(?:stays|remains)\s+between\s+us\b/gi,
+        /\bour\s+little\s+secret\b/gi,
+        /\bkeep\s+(?:this|it)\s+secret\b/gi,
+        /\bchat\s+delete\b/gi,
+        /\bdelete\s+kar\s*(?:do|dena|de)\b/gi,
+        /\bkisi\s+ko\s+(?:mat|na)\s+bata\w*/gi,
+        /چیٹ\s*ڈیلیٹ/g,
+        /ڈیلیٹ\s*کر\s*(?:دو|دینا|دے)/g,
+        /کسی\s*کو\s*(?:مت|نہ)\s*بتا\S*/g
+      ]
+    },
+    {
+      id: 6, ur: "گیس لائٹنگ: کہی ہوئی بات سے مکر جانا",
+      en: "Gaslighting: denying things they clearly said",
+      whyUr: "آپ کی یادداشت اور سمجھ پر شک ڈال کر آپ کا اعتماد توڑا جاتا ہے۔",
+      whyEn: "Your trust in your own memory and judgement is worn down.",
+      actions: [
+        { ur: "اسی دن تاریخ کے ساتھ ڈائری میں لکھیں کہ کیا ہوا۔ تازہ یادداشت سب سے معتبر ہوتی ہے۔",
+          en: "Write down what happened in a dated journal on the same day. Fresh notes are the most reliable." },
+        { ur: "پیغامات کے اسکرین شاٹ سنبھال کر رکھیں تاکہ ’میں نے ایسا کبھی نہیں کہا‘ کا جواب ریکارڈ سے دیا جا سکے۔",
+          en: "Keep screenshots so “I never said that” can be checked against the record." },
+        { ur: "اپنی ڈائری ایسی جگہ رکھیں جہاں آپ کے علاوہ کسی کی رسائی نہ ہو۔",
+          en: "Store the journal where only you can reach it." }
+      ],
+      patterns: [
+        /\bi\s+never\s+(?:said|told you|did|promised)\s+(?:that|this|it|anything)\b/gi,
+        /\bi\s+didn'?t\s+say\s+that\b/gi,
+        /\bthat\s+(?:never|didn'?t)\s+(?:happen|happened)\b/gi,
+        /\byou(?:'re| are)\s+(?:imagining|making (?:it|that|things) up|remembering (?:it |that )?wrong|crazy|insane|paranoid|too sensitive|overreacting|being dramatic|dramatic|delusional)\b/gi,
+        /\bmaine?\s+aisa\s+(?:kabhi\s+)?nahi\s+(?:kaha|bola)\b/gi,
+        /\bye\s+(?:kabhi\s+)?hua\s+hi\s+nahi\b/gi,
+        /\btumhara\s+wahem\b/gi,
+        /\btum\s+(?:pagal|overreact|wahem)\w*/gi,
+        /میں\s*نے\s*ایسا\s*(?:کبھی\s*)?نہیں\s*(?:کہا|بولا)/g,
+        /تمہارا\s*وہم/g,
+        /تم\s*پاگل\s*ہو/g
+      ]
+    },
+    {
+      id: 7, ur: "نجی تصاویر، ویڈیوز یا معلومات پھیلانے کی دھمکی",
+      en: "Threatening to share private photos, videos or information",
+      whyUr: "یہ بلیک میلنگ ہے اور پاکستان کے سائبر کرائم قوانین (PECA) کے تحت قابلِ شکایت ہو سکتی ہے۔ شرم آپ کی نہیں، دھمکی دینے والے کی ہے۔",
+      whyEn: "This is blackmail and may be reportable under Pakistan’s cybercrime law (PECA). The shame belongs to the person making the threat, not to you.",
+      actions: [
+        { ur: "دھمکی کے پیغامات کے اسکرین شاٹ (تاریخ، وقت اور نمبر سمیت) محفوظ کریں۔ مطالبہ پورا نہ کریں، مزید تصاویر یا رقم نہ بھیجیں۔",
+          en: "Screenshot the threats (with date, time and number). Don’t comply with demands, and don’t send more images or money." },
+        { ur: "تصاویر پھیل چکی ہوں یا خطرہ ہو تو StopNCII.org پر ان کا ’ڈیجیٹل فنگر پرنٹ‘ بنوائیں؛ تصویر آپ کے آلے سے باہر نہیں جاتی۔ (18 سال سے کم عمر کے لیے Take It Down)",
+          en: "Use StopNCII.org to create a hash (digital fingerprint) so participating platforms can block the images; the image stays on your device. (Under 18: use Take It Down.)" },
+        { ur: "جلد از جلد NCCIA (1799) یا DRF ہیلپ لائن (0800-39393) سے رابطہ کریں۔",
+          en: "Contact NCCIA (1799) or the DRF helpline (0800-39393) as soon as you can." }
+      ],
+      patterns: [
+        /\b(?:i'?ll|i will|i'?m going to|i'?m gonna|i might|i could|i can)\s+(?:just\s+)?(?:leak|post|share|send|upload|expose|forward|show)\s+(?:\w+\s+){0,2}(?:pics?|photos?|pictures?|videos?|screenshots?|chats?|nudes?|secrets?|dms?|voice notes?)\b/gi,
+        /\b(?:leak|expose|post|upload)\s+(?:your|ur)\s+(?:pics?|photos?|videos?|chats?|nudes?|secrets?)\b/gi,
+        /\bwill\s+(?:leak|share|post|expose)\s+(?:my|our|her|his)\s+(?:pics?|photos?|videos?|chats?)\b/gi,
+        /\beveryone\s+(?:will|is going to)\s+(?:see|know|find out)\b/gi,
+        /\b(?:send|show)\s+(?:it|them|this)\s+to\s+(?:your|ur)\s+(?:family|parents|friends|boss|college|university|school)\b/gi,
+        /\bexpose\s+you\b/gi,
+        /\bmake\s+(?:it|them|you)\s+viral\b/gi,
+        /\bblackmail\w*/gi,
+        /\bthreaten\w*\s+(?:to\s+)?(?:leak|share|post|expose|send)\b/gi,
+        /\b(?:pics?|photos?|tasveer\w*|videos?)\s+(?:viral|leak|public)\s*(?:kar|kardunga|karunga|kar dunga|kar dungi)\w*/gi,
+        /\b(?:viral|leak)\s+kar\w*/gi,
+        /\bsab\s+ko\s+(?:bata|dikha)\w*/gi,
+        /\bghar\s+walon?\s+ko\s+(?:bata|dikha|bhej)\w*/gi,
+        /وائرل\s*کر\S*/g,
+        /لیک\s*کر\S*/g,
+        /سب\s*کو\s*(?:بتا|دکھا)\S*/g,
+        /بلیک\s*میل\S*/g
+      ]
+    },
+    {
+      id: 8, ur: "آپ کی کامیابیوں اور خوابوں کی تضحیک",
+      en: "Mocking, demeaning or belittling your achievements and goals",
+      whyUr: "خود اعتمادی کم ہو تو چھوڑ کر جانا مشکل لگتا ہے، اور یہی اس رویے کا مقصد ہوتا ہے۔",
+      whyEn: "When your self-worth drops, leaving feels harder. That is the point of this behaviour.",
+      actions: [
+        { ur: "اپنی کامیابیوں (نتائج، انعامات، دوسروں کے تعریفی پیغامات) کا ایک نجی فولڈر بنائیں۔",
+          en: "Keep a private folder of your achievements and kind messages from others." },
+        { ur: "تضحیک آمیز پیغامات کا اسکرین شاٹ تاریخ اور وقت سمیت ریکارڈ کا حصہ بنائیں۔",
+          en: "Screenshot demeaning messages, date and time visible, as part of your record." },
+        { ur: "اپنے مقاصد کے بارے میں ان لوگوں سے بات کریں جو آپ کا حوصلہ بڑھاتے ہیں: استاد، مینٹر، دوست۔",
+          en: "Talk about your goals with people who back you: teachers, mentors, friends." }
+      ],
+      patterns: [
+        /\byou(?:'re| are|r)\s+(?:so\s+|such a\s+|really\s+)?(?:stupid|useless|worthless|pathetic|dumb|ugly|nothing|an idiot|idiot|a loser|nobody|a joke|fat)\b/gi,
+        /\bno\s*one\s+(?:else\s+)?(?:will|would|can)\s+(?:ever\s+)?(?:love|want|marry|date|hire|accept)\s+(?:you|u)\b/gi,
+        /\byou(?:'ll| will)\s+never\s+(?:be|amount|become|make it|succeed|get)\b/gi,
+        /\b(?:that'?s|it'?s|your)\s+(?:a\s+)?(?:stupid|silly|pointless|useless|childish|ridiculous|dumb)\s+(?:dream|goal|idea|plan|degree|career|ambition)\b/gi,
+        /\bwho\s+do\s+you\s+think\s+you\s+are\b/gi,
+        /\bnothing\s+without\s+me\b/gi,
+        /\b(?:dream|goal|degree|career|studies|ambition)s?\b.{0,20}\bwaste of (?:time|money)\b/gi,
+        /\b(?:tum|tu|aap)\s+(?:kuch\s+)?nahi\s+kar\s+sak\w*/gi,
+        /\btumhari\s+aukaat\b/gi,
+        /\b(?:nikamm?[ai]|bewaqoof|bewakoof|jahil|gawaar|ghatiya)\b/gi,
+        /\bkoi\s+tumse\s+(?:shaadi|pyar)\s+nahi\b/gi,
+        /تمہاری\s*اوقات/g,
+        /نکمی|نکما|بیوقوف|بے\s*وقوف|جاہل|گنوار/g,
+        /تم\s*کچھ\s*نہیں\s*کر\s*سکت\S*/g
+      ]
+    },
+    {
+      id: 9, ur: "عام میل جول پر شدید حسد یا غصہ",
+      en: "Extreme jealousy or anger over normal interactions",
+      whyUr: "غصے کے ڈر سے اپنی زندگی چھوٹی کر لینا کنٹرول کی نشانی ہے۔",
+      whyEn: "Shrinking your life to avoid someone’s anger is a sign of control.",
+      actions: [
+        { ur: "غصے کے واقعات کی تاریخ وار تفصیل لکھیں، خاص طور پر اگر دھمکی، توڑ پھوڑ یا جسمانی رویہ شامل ہو۔",
+          en: "Log incidents of anger with dates, especially threats, property damage or physical behaviour." },
+        { ur: "غصے کی حالت میں بحث نہ کریں۔ ایسی جگہ رہیں جہاں سے نکل سکیں، اور فون چارج اور اپنے پاس رکھیں۔",
+          en: "Don’t argue while they are angry. Stay where you can leave, and keep your phone charged and on you." },
+        { ur: "اگر جسمانی خطرہ محسوس ہو تو فوراً پولیس 15 پر کال کریں۔",
+          en: "If you feel physically unsafe, call the police on 15 right away." }
+      ],
+      patterns: [
+        /\bwho\s+(?:is|was)\s+(?:he|she|that|this)\s+(?:guy|girl|boy|person|to you)\b/gi,
+        /\bwhy\s+(?:are|were|did|do)\s+you\s+(?:talk|talking|text|texting|smile|smiling|laugh|laughing|reply|replying|flirt|flirting)\w*\s*(?:to|with|at)?\b/gi,
+        /\byou\s+(?:flirt|are flirting|were flirting|cheat|are cheating|were cheating)\b/gi,
+        /\bi(?:'ll| will)\s+(?:kill|hurt|break|beat|slap|destroy)\s+(?:him|her|you|them|that)\b/gi,
+        /\bhow\s+dare\s+you\s+(?:talk|speak|look|smile|text)\b/gi,
+        /\b(?:gets?|got|is|was|very|so|extremely)\s+(?:extremely\s+)?jealous\b/gi,
+        /\bgets?\s+(?:angry|mad|furious)\s+(?:when|if|that)\b/gi,
+        /\bkis\s*se\s+baat\s+(?:kar|kr)\s*(?:rahi|raha|rahe)\b/gi,
+        /\bkaun\s+(?:tha|thi|hai)\s+(?:wo|woh|ye)\b/gi,
+        /\bitni\s+der\s+se\s+kis\b/gi,
+        /کس\s*سے\s*بات\s*(?:کر|کیوں)\S*/g,
+        /وہ\s*کون\s*(?:تھا|تھی)/g,
+        /حسد/g
+      ]
+    },
+    {
+      id: 10, ur: "سوشل میڈیا سرگرمی، لائکس اور فالوورز کی کڑی نگرانی",
+      en: "Obsessively monitoring social media activity and likes",
+      whyUr: "ہر لائک پر جواب طلبی آپ کی آزادی کو تنگ کرتی ہے۔",
+      whyEn: "Being questioned over every like narrows your freedom.",
+      actions: [
+        { ur: "پرائیویسی سیٹنگز دیکھیں: اکاؤنٹ پرائیویٹ کریں، ’Close Friends‘ استعمال کریں، اور ایکٹیویٹی اسٹیٹس بند کریں۔",
+          en: "Review privacy settings: make accounts private, use Close Friends, and hide your activity status." },
+        { ur: "’Login Activity‘ میں انجان لاگ اِن دیکھیں اور پاس ورڈ بدلیں۔",
+          en: "Check Login Activity for unknown sessions and change your passwords." },
+        { ur: "جواب طلبی والے پیغامات کے اسکرین شاٹ محفوظ کریں۔",
+          en: "Screenshot the interrogating messages." }
+      ],
+      patterns: [
+        /\bwhy\s+did\s+you\s+(?:like|follow|comment on|view|react to|heart|watch)\b/gi,
+        /\bwho\s+(?:is|was)\s+(?:this|that|he|she)\s+(?:on|in)\s+(?:your\s+)?(?:insta\w*|story|stories|snap\w*|followers|following|likes|tiktok|facebook|fb)\b/gi,
+        /\b(?:unfollow|block|unfriend)\s+(?:him|her|them|that\s+\w+|everyone)\b/gi,
+        /\b(?:saw|seen|checked|noticed)\s+(?:you|your|ur)\s*(?:liked|like|story|stories|following|followers|comment|activity|online status)\b/gi,
+        /\bwhy\s+(?:were|are)\s+you\s+(?:online|active)\b/gi,
+        /\b(?:checks?|monitors?|watches|stalks?)\s+(?:my\s+)?(?:likes?|followers|story|stories|social media|insta\w*|activity|online status)\b/gi,
+        /\b(?:like|follow|comment)\s+kyun\s+(?:kiya|kia|kar)\w*/gi,
+        /\bunfollow\s+kar\w*/gi,
+        /\bstory\s+kyun\b/gi,
+        /\b(?:online\s+kyun|kyun\s+online)\b/gi,
+        /انفالو\S*/g,
+        /لائک\s*کیوں/g,
+        /آن\s*لائن\s*کیوں/g
+      ]
+    },
+    {
+      id: 11, ur: "خود کو نقصان پہنچانے کی دھمکی یا جذباتی دباؤ سے فیصلے بدلوانا",
+      en: "Threatening self-harm or emotional manipulation to control your choices",
+      whyUr: "کسی دوسرے کے عمل کی ذمہ داری آپ پر نہیں، مگر ہر دھمکی کو سنجیدگی سے لینا چاہیے۔",
+      whyEn: "You are not responsible for another person’s actions, but a threat like this should still be taken seriously.",
+      actions: [
+        { ur: "اگر کسی کی جان کو فوری خطرہ لگے تو 15 پر کال کریں یا اس کے خاندان/کسی قریبی شخص کو آگاہ کریں۔ یہ بوجھ آپ اکیلے نہ اٹھائیں۔",
+          en: "If someone’s life seems in immediate danger, call 15 or alert their family or a close person. You shouldn’t carry this alone." },
+        { ur: "انہیں کسی ماہرِ نفسیات یا خاندان کے بڑے کی طرف رہنمائی کریں؛ آپ ان کے معالج نہیں ہیں۔",
+          en: "Point them toward a mental health professional or a family elder; you are not their therapist." },
+        { ur: "دھمکی کے پیغامات محفوظ کریں اور کسی قابلِ اعتماد شخص یا DRF ہیلپ لائن سے بات کریں۔ اگر آپ خود اپنے آپ کو نقصان پہنچانے کے بارے میں سوچ رہے ہیں تو ابھی کسی قابلِ اعتماد شخص یا معالج سے بات کریں۔",
+          en: "Save the messages and talk to a trusted person or the DRF helpline. If you yourself are having thoughts of harming yourself, please speak to someone you trust or a mental health professional now." }
+      ],
+      patterns: [
+        /\b(?:i'?ll|i will|i'?m going to|i might|i'?m gonna|i want to|i'?d rather)\s+(?:kill myself|hurt myself|harm myself|end it(?: all)?|end my life|die|disappear|do something (?:to myself|stupid))\b/gi,
+        /\b(?:you'?ll|you will)\s+(?:be\s+)?(?:responsible|to blame|the reason)\b/gi,
+        /\bit(?:'?ll| will| would)\s+be\s+your\s+fault\b/gi,
+        /\bif\s+you\s+(?:leave|break up|go|block me|stop talking|don'?t (?:reply|answer|come|call)).{0,30}\b(?:kill|hurt|die|end|suicide|harm)\w*/gi,
+        /\b(?:threatens?|threatened|threatening)\s+(?:to\s+)?(?:kill|hurt|harm)\s+(?:himself|herself|themselves|myself)\b/gi,
+        /\bbecause of you\b.{0,20}\b(?:die|suicide|kill|end)\w*/gi,
+        /\bmain?\s+(?:mar|marr)\s+(?:jaunga|jaungi|jaun)\w*/gi,
+        /\b(?:khud\s*kushi|khudkushi|suicide)\b/gi,
+        /\bkhud\s+ko\s+(?:khatam|nuqsan|maar)\w*/gi,
+        /\btumhari\s+wajah\s+se\s+(?:mar|maar|jaan)\w*/gi,
+        /\bjaan\s+de\s+(?:dunga|dungi|doonga|doongi)\b/gi,
+        /مر\s*جا(?:ؤں|ؤنگا|ؤنگی|ؤں\s*گا|ؤں\s*گی)/g,
+        /جان\s*دے\s*(?:دوں|دونگا|دوں\s*گا|دوں\s*گی)/g,
+        /خود\s*کشی/g,
+        /تمہاری\s*وجہ\s*سے\s*مر/g
+      ]
+    },
+    {
+      id: 12, ur: "مالی کنٹرول یا آپ کی آزادی پر سخت پابندی",
+      en: "Financial control or strict oversight of your freedom",
+      whyUr: "پیسے اور اجازت پر قبضہ انسان سے نکلنے کا راستہ چھین لیتا ہے۔",
+      whyEn: "Control over money and permission removes a person’s ability to leave.",
+      actions: [
+        { ur: "اپنی شناختی دستاویزات (CNIC، پاسپورٹ، تعلیمی اسناد) کی کاپیاں کسی قابلِ اعتماد شخص کے پاس رکھیں۔",
+          en: "Keep copies of your ID documents (CNIC, passport, certificates) with a trusted person." },
+        { ur: "اگر ممکن ہو تو تھوڑی رقم یا ایسا اکاؤنٹ رکھیں جو صرف آپ کے کنٹرول میں ہو۔ اے ٹی ایم پن اور بینکنگ پاس ورڈ کسی کو نہ بتائیں۔",
+          en: "If possible, keep a small amount of money or an account only you control. Never share ATM PINs or banking passwords." },
+        { ur: "کام، تعلیم، پیسے یا آنے جانے پر پابندی والے پیغامات محفوظ کریں اور کسی قابلِ اعتماد شخص کو بتائیں۔",
+          en: "Save messages that restrict your work, study, money or movement, and tell a trusted person." }
+      ],
+      patterns: [
+        /\b(?:give|hand|send|transfer)\s+(?:me|over)\s+(?:your\s+|ur\s+|all\s+your\s+|the\s+)?(?:salary|money|pay|paycheque|paycheck|earnings|atm|card|debit card|bank|cash)\b/gi,
+        /\bhow\s+much\s+(?:did|do|have)\s+you\s+(?:spend|spent|earn|make|made|save|saved)\b/gi,
+        /\b(?:send|show)\s+(?:me\s+)?(?:the\s+|your\s+)?(?:receipts?|bank statements?|transactions?)\b/gi,
+        /\b(?:can'?t|cannot|are\s+not\s+allowed\s+to|aren'?t\s+allowed\s+to|not\s+allowed\s+to)\s+(?:work|study|go\s+out|leave|travel|drive|have\s+a\s+job)\b/gi,
+        /\b(?:won'?t|doesn'?t|don'?t|will not)\s+(?:let|allow)\s+me\s+(?:to\s+)?(?:work|study|leave|travel|have (?:a )?(?:job|money|phone)|spend)\b/gi,
+        /\bi(?:'ll| will)\s+decide\s+(?:where|when|what|who|if)\b/gi,
+        /\b(?:need|needs|ask for)\s+(?:my|his|her)\s+permission\b/gi,
+        /\bask\s+me\s+(?:first\s+)?before\b/gi,
+        /\bquit\s+(?:your\s+)?(?:job|studies|university|college|work)\b/gi,
+        /\bcontrols?\s+(?:my|all my|the)\s+(?:money|finances|salary|account|bank)\b/gi,
+        /\bwithout\s+(?:my\s+)?permission\b/gi,
+        /\b(?:job|naukri|padhai|university)\s+(?:chhor|chor|band)\w*/gi,
+        /\b(?:paise|paisay|salary|tankhwah)\s+(?:do|mujhe|mere paas|dikhao|batao)\b/gi,
+        /\bmeri\s+(?:ijazat|permission)\b/gi,
+        /\bijazat\s+(?:ke\s+baghair|ke\s+bina|lo|lena)\b/gi,
+        /\bbahar\s+(?:nahi|mat)\s+ja\w*/gi,
+        /نوکری\s*چھوڑ\S*/g,
+        /پڑھائی\s*چھوڑ\S*/g,
+        /اجازت\s*(?:کے\s*بغیر|لو|لینا|چاہیے)/g,
+        /تنخواہ\s*(?:دو|مجھے|دکھاؤ)/g,
+        /پیسے\s*(?:دو|مجھے|دکھاؤ)/g
+      ]
+    },
+    /* --- 20 Advanced Patterns from Real-World Analysis (Sarim Dynamic) --- */
+    {
+      id: 13, ur: "خود کو برا کہہ کر ہمدردی حاصل کرنا (Martyred Self-Deprecation)",
+      en: "The Martyred Self-Deprecation Trap",
+      whyUr: "اپنی غلطی تسلیم کرنے کے بجائے خود کو برا کہہ کر آپ کو مجبور کیا جاتا ہے کہ آپ انہیں دلاسہ دیں۔",
+      whyEn: "Instead of taking accountability, weaponizing self-hatred forces you into comforting them.",
+      actions: [
+        { ur: "ان کے خود پر تنقید کرنے والے جملوں پر دلاسہ دینے سے گریز کریں۔ غلطی پر فوکس برقرار رکھیں۔",
+          en: "Resist the urge to soothe their self-criticism. Keep the focus firmly on the actual accountability needed." },
+        { ur: "اسکرین شاٹ محفوظ رکھیں تاکہ جذباتی ردوبدل ریکارڈ میں رہے۔",
+          en: "Keep screenshots to maintain an objective record of how accountability gets deflected." }
+      ],
+      patterns: [
+        /\bi'?m\s+not\s+a\s+nice\s+person\b/gi,
+        /\bi\s+have\s+a\s+lot\s+of\s+messed?\s+up\s+stuff\s+in\s+my\s+head\b/gi,
+        /\byou\s+of\s+all\s+people.{0,25}nicest?\s+soul\b/gi,
+        /\bshould\s+simply\s+be\s+miles?\s+away\b/gi,
+        /\bbiggest\s+fumbler\s+in\s+the\s+world\b/gi
+      ]
+    },
+    {
+      id: 14, ur: "پہلے سے روگردانی کی صفائی پیش کرنا (Preemptive Avoidance Shield)",
+      en: "The Preemptive Avoidance Shield",
+      whyUr: "بحث یا جواب دہی سے بچنے کے لیے پہلے سے ہی اپنے ہچکچانے کو جواز بنا دینا۔",
+      whyEn: "Justifying previous avoidance to make accountability or discussion feel like the mistake.",
+      actions: [
+        { ur: "ان کی ہچکچاہٹ کو اپنے سوال یا حقِ بات پر اثر انداز نہ ہونے دیں۔",
+          en: "Don't let their framing of past hesitation invalidate your current right to clarity." }
+      ],
+      patterns: [
+        /\bthis\s+is\s+why\s+i\s+hesitated\s+to\s+be\s+more\s+than\s+friends\b/gi,
+        /\bu\s+see\s+why\s+i\s+was\s+avoiding\s+this\s+conversation\b/gi,
+        /\bi\s+hesitated\s+didnt?\s+i\b/gi
+      ]
+    },
+    {
+      id: 15, ur: "جواب دہی کا نام لے کر گولپوسٹ بدلنا (Unmeetable Accountability Loop)",
+      en: "The Unmeetable Accountability Loop",
+      whyUr: "جواب دہی کا مطالبہ تو کرنا لیکن اس کے حصول کو ناممکن بنانا تاکہ آپ گول چکر میں گھومتے رہیں۔",
+      whyEn: "Demanding accountability while setting impossible conditions so you stay trapped in circles.",
+      actions: [
+        { ur: "ایسی شرائط جو پوری نہ ہو سکیں، ان پر الجھنے کے بجائے اپنی ذہنی سکون کو ترجیح دیں۔",
+          en: "Recognize when circular demands are designed to keep you engaged without resolution." }
+      ],
+      patterns: [
+        /\buntil\s+and\s+unless\s+u\s+dont?\s+hold\s+me\s+accountable\b/gi,
+        /\breach\s+your\s+peace\s+of\s+mind\s+you'?ll\s+be\s+running\s+in\s+circles\b/gi,
+        /\bthere\s+does\s+need\s+to\s+be\s+accountability\s+fs\b/gi
+      ]
+    },
+    {
+      id: 16, ur: "تیسرے شخص کو بیچ میں لانا (Third-Party Triangulation)",
+      en: "The Third-Party Triangulation Trap",
+      whyUr: "کسی اور فریق (مثلاً کسی اور تعلق یا شخص) کا نام لے کر ذمہ داری یا دباؤ کو منتقل کرنا۔",
+      whyEn: "Using a third party or another dynamic to create pressure, jealousy, or external justification.",
+      actions: [
+        { ur: "دوسرے رشتوں یا افراد کو اس بحث میں شامل نہ ہونے دیں۔",
+          en: "Refuse to let outside individuals or past relationships dictate the boundaries of your current well-being." }
+      ],
+      patterns: [
+        /\bnabiha\s+doesnt?\s+want\s+us\s+to\s+be\s+friends?\b/gi,
+        /\bshe\s+doesnt?\s+want\s+me\s+to\s+have\s+any\s+female\s+friends?\b/gi,
+        /\bwhat\s+would\s+nabiha\s+say\b/gi
+      ]
+    },
+    {
+      id: 17, ur: "انتہائی قربانی یا سزا کا ڈرامائی پیشکش (Martyr Ultimatum)",
+      en: "The Coercive Self-Sacrifice Ultimatum",
+      whyUr: "معمول کی بات چیت کو انتہائی سزاؤں یا مکمل بائیکاٹ سے مشروط کر کے آپ کو قصوروار محسوس کرانا۔",
+      whyEn: "Offering extreme, melodramatic penance to make normal boundary-setting look cruel.",
+      actions: [
+        { ur: "انتہائی اور جذباتی آفرز کو قبول نہ کریں۔ حدود سادہ اور واضح رکھیں۔",
+          en: "Do not accept melodramatic extremes as a substitute for respectful boundaries." }
+      ],
+      patterns: [
+        /\bwe\s+can\s+hangout\s+one\s+single\s+time\s+this\s+summer\b/gi,
+        /\bdo\s+whatever\s+u\s+want\s+with\s+me\s+scream\s+shout\s+punish\s+me\b/gi
+      ]
+    },
+    {
+      id: 18, ur: "احساسِ زیاں کو الٹنا: ’تم میری فکر مت کرو‘ (Inverse Empathy Reversal)",
+      en: "The Inverse Empathy Reversal",
+      whyUr: "جب آپ اپنی تکلیف کا اظہار کریں تو اسے آپ کی ہی کمزوری یا ضرورت سے زیادہ سوچنے کا نام دینا۔",
+      whyEn: "Shifting your valid concern back onto you as an annoyance or unhealthy fixation.",
+      actions: [
+        { ur: "اپنے جذبات کو چھپانے یا دبانے کی ضرورت نہیں۔ آپ کا درد حقیقی ہے۔",
+          en: "Your feelings of hurt are valid and do not need to be minimized to keep things comfortable for them." }
+      ],
+      patterns: [
+        /\bstop\s+worrying\s+about\s+me\s+ffs?\b/gi,
+        /\bcan\s+u\s+please\s+just\s+think\s+about\s+yourself\s+rn\b/gi,
+        /\bstop\s+thinking\s+about\s+how\s+i\s+feel\b/gi
+      ]
+    },
+    {
+      id: 19, ur: "ردِ عمل کو حسنِ سلوک یا دور اندیشی قرار دینا (Retroactive Revisionism)",
+      en: "The Retroactive Revisionism Trap",
+      whyUr: "ماضی کی تکلیف دہ دوری کو یہ کہہ کر سچی نیکی ظاہر کرنا کہ ’میں تو تمہارے فائدے کے لیے دور ہوا تھا‘۔",
+      whyEn: "Reframing past rejection or poor treatment as a selfless act of mentoring you.",
+      actions: [
+        { ur: "پچھلے فیصلوں کو اس طرح بدل کر پیش کرنے پر یقین نہ کریں۔",
+          en: "Do not let poor treatment get rewritten as benevolence after the fact." }
+      ],
+      patterns: [
+        /\bi\s+thought\s+that\s+if\s+u\s+knew\s+more\s+people\s+u\s+could\s+def\s+do\s+better\b/gi,
+        /\bi\s+wanted\s+u\s+to\s+explore\s+and\s+find\s+out\s+yourself\b/gi
+      ]
+    },
+    {
+      id: 20, ur: "خطرناک بحران کی دھمکی سے توجہ ہٹانا (Melodramatic Crisis Deflection)",
+      en: "The Melodramatic Crisis Deflection",
+      whyUr: "بحث یا احتساب کے وقت انتہائی خطرناک یا خودکشی جیسی باتیں کر کے سارا فوکس اپنی حفاظت پر کروا لیناـ",
+      whyEn: "Instantly hijacking a conversation about boundaries by creating an emergency.",
+      actions: [
+        { ur: "اگر خود کو یا کسی کو خطرہ ہو تو فوری متعلقہ اداروں یا ہیلپ لائنز پر اطلاع دیں۔",
+          en: "If life safety is invoked, use official helplines immediately and protect your own emotional bandwidth." }
+      ],
+      patterns: [
+        /\bi\s+literally\s+wanna\s+kms?\s+rn\b/gi,
+        /\bdeath\s+would\s+be\s+more\s+peaceful\s+than\b/gi
+      ]
+    },
+    {
+      id: 21, ur: "تعریف کا ڈھال کے طور پر استعمال (Compliment-As-A-Shield)",
+      en: "The Compliment-As-A-Shield",
+      whyUr: "آپ کو حد سے زیادہ نیک یا فرشتہ صفت قرار دے کر آپ کا غصہ یا تنقید ناجائز ثابت کرنا۔",
+      whyEn: "Over-idealizing you as superhuman so you feel you must maintain saintly grace instead of being angry.",
+      actions: [
+        { ur: "تعریف کے پیچھے چھپے دباؤ کو پہچانیں؛ آپ کو پرسکون یا فرشتہ بننے کی کوئی ضرورت نہیں۔",
+          en: "You are allowed to be angry and human; compliments shouldn't be used to disarm your boundaries." }
+      ],
+      patterns: [
+        /\bthank\s+you\s+for\s+being\s+so\s+impossibly\s+inhumanely\s+nice\b/gi,
+        /\bno\s+one\s+on\s+history\s+mightve\s+reacted\b/gi,
+        /\byou\s+really\s+are\s+a\s+gem\s+vaneeza\b/gi
+      ]
+    },
+    {
+      id: 22, ur: "خطرناک تعلق اور گہرے جذباتی زہر کا جواز بنانا",
+      en: "The 'My Love is Too Deep' Gaslight",
+      whyUr: "بدترین سلوک اور تکلیف کو ’محبت کی گہرائی‘ کہہ کر نظر انداز کرنے پر مجبور کرنا۔",
+      whyEn: "Framing toxic endurance and dysfunction as a romantic virtue of deep love.",
+      actions: [
+        { ur: "تکلیف دہ رویے کو محبت کا نام دے کر برداشت نہ کریں۔",
+          en: "Do not confuse enduring poor treatment with emotional depth." }
+      ],
+      patterns: [
+        /\bmy\s+love\s+for\s+you\s+is\s+way\s+too\s+deep\s+it\s+just\s+ignores?\s+every\s+bad\s+thing\b/gi,
+        /\bit\s+shouldnt?\s+be\s+that\s+way\b/gi
+      ]
+    },
+    {
+      id: 23, ur: "نفسیاتی اصطلاحات سے اصل معاملے کو الجھانا (Pseudo-Intellectual Deflection)",
+      en: "The Pseudo-Intellectual Analysis Deflection",
+      whyUr: "سنجیدہ غلطی کو فلسفیانہ یا شعوری اصطلاحات میں ڈھانپ کر اس کی سنگینی ختم کرنا۔",
+      whyEn: "Using clinical or abstract language to distance themselves from raw accountability.",
+      actions: [
+        { ur: "سادہ الفاظ میں دیکھیں کہ عمل کیا تھا، پیچیدہ جملوں میں نہ الجھیں۔",
+          en: "Keep it grounded in plain facts rather than getting lost in abstract psychoanalysis." }
+      ],
+      patterns: [
+        /\bvery\s+trivial\s+subconscious\s+thought\b/gi,
+        /\bsharp\s+and\s+blunt\s+at\s+the\s+same\s+time\b/gi
+      ]
+    },
+    {
+      id: 24, ur: "موضوع کو زبردستی سمیٹ کر خوش آئند نوید سنانا (Forced Closure Illusion)",
+      en: "The Forced Closure Illusion",
+      whyUr: "مسئلے کو حل کیے بغیر اپنی مرضی سے بات ختم کر کے آگے بڑھنے کا حکم دینا۔",
+      whyEn: "Arbitrarily wrapping up a painful dynamic with an optimistic closing statement to bypass processing time.",
+      actions: [
+        { ur: "آپ کو اپنے جذبات کو ہضم کرنے کے لیے جتنا وقت چاہیے، لیں؛ زبردستی کا پرسکون اختتام ضروری نہیں۔",
+          en: "You are entitled to take all the time you need to process without an artificial happy ending." }
+      ],
+      patterns: [
+        /\benjoy\s+your\s+summer\s+vaneeza\s+im\s+really\s+sorry\s+i\s+ruined\s+2026\b/gi,
+        /\bthings\s+will\s+only\s+go\s+up\s+from\s+here\b/gi
+      ]
+    },
+    {
+      id: 25, ur: "صرف اپنی محرومی کا رونا رونا (The Pity Party Trap)",
+      en: "The 'I'm the Biggest Fumbler' Pity Party",
+      whyUr: "نقصان یا تکلیف آپ کو پہنچی ہو، مگر بات کو اپنے افسوس پر موڑ لینا۔",
+      whyEn: "Centering their own grief over losing you rather than the actual harm they caused.",
+      actions: [
+        { ur: "ان کے افسوس کو اپنے درد پر حاوی نہ ہونے دیں۔",
+          en: "Do not let their expressions of regret distract from the damage they caused." }
+      ],
+      patterns: [
+        /\bi\s+feel\s+like\s+im\s+the\s+biggest\s+fumbler\s+in\s+the\s+world\s+rn\b/gi,
+        /\bmaybe\s+thats?\s+what\s+i\s+deserve\s+after\s+what\s+i\s+did\s+to\s+u\b/gi
+      ]
+    },
+    {
+      id: 26, ur: "فوری طور پر عام دوستی بحال کرنے کی شرط (Guilt-Tripping Friendship Conditionals)",
+      en: "Guilt-Tripping Conditionals on Friendship",
+      whyUr: "شدید صدمے یا دھوکے کے فوراً بعد بغیر کسی حل کے نارمل دوستی کا مطالبہ کرنا۔",
+      whyEn: "Demanding a casual friendship immediately after betrayal, invalidating your hurt.",
+      actions: [
+        { ur: "آپ کو فوراً ’نارمل‘ یا دوست بننے کی کوئی مجبوری نہیں۔",
+          en: "You do not have to perform normalcy or immediate friendship to accommodate their comfort." }
+      ],
+      patterns: [
+        /\bif\s+we\s+continue\s+being\s+friends?\s+can\s+we\s+still\s+chat\s+normally\b/gi,
+        /\bwe\s+are\s+not\s+dating\s+nor\s+are\s+we\s+in\s+a\s+situationship\b/gi
+      ]
+    },
+    {
+      id: 27, ur: "اپنے ختم کرنے کا بوجھ آپ پر ڈالنا (Blame-Shifting Through Compliance)",
+      en: "Blame-Shifting Through Self-Erasing Compliance",
+      whyUr: "کہنا کہ ’تم ہی مجھے برا بھلا کہہ کر ختم کر دو‘ تاکہ ظالم آپ کو بننا پڑے۔",
+      whyEn: "Commanding you to become the bad guy who trashes them, shifting the burden of ending things.",
+      actions: [
+        { ur: "ان کے کہنے پر اپنے آپ کو سخت یا برا ثابت کرنے کی کوشش نہ کریں۔",
+          en: "Refuse to take on the role of the aggressor just because they assign it to you." }
+      ],
+      patterns: [
+        /\bthe\s+best\s+way\s+out\s+is\s+to\s+trash\s+me\s+and\s+u\s+need\s+to\s+do\s+it\b/gi,
+        /\byou\s+need\s+to\s+do\s+it\s+cause\s+thats?\s+the\s+right\s+thing\s+to\s+do\b/gi
+      ]
+    },
+    {
+      id: 28, ur: "متضاد باتوں کا پکا یقین دلانا (The Reaffirmation Trap)",
+      en: "The Reaffirmation Trap",
+      whyUr: "ایک طرف تعلق سے انکار کرنا اور ساتھ ہی کہنا کہ ’میں اپنے کہے پر قائم ہوں‘۔",
+      whyEn: "Giving you conflicting emotional data points to keep you hooked on mixed signals.",
+      actions: [
+        { ur: "عمل اور واضح فیصلوں پر دھیان دیں، متضاد جملوں پر نہیں۔",
+          en: "Rely on consistent actions and clear boundaries rather than confusing mixed declarations." }
+      ],
+      patterns: [
+        /\bi\s+said\s+i\s+loved\s+u\b/gi,
+        /\band\s+i\s+stand\s+by\s+it\b/gi
+      ]
+    },
+    {
+      id: 29, ur: "دوستوں کے حلقے کو ڈھال بنانا (Shared-Group Pressure Deflection)",
+      en: "The Shared-Group Pressure Deflection",
+      whyUr: "یہ باور کرانا کہ باہر کے لوگ یا دوست بھی یہی کہیں گے کہ تم غلط ہو یا زیادہ سوچ رہی ہو۔",
+      whyEn: "Invoking an imaginary jury of friends to validate their stance and isolate your perspective.",
+      actions: [
+        { ur: "دوسروں کی آرا کو اپنے ذاتی احساسات پر حاوی نہ ہونے دیں۔",
+          en: "Trust your own direct experience over generalized hypotheticals about what others think." }
+      ],
+      patterns: [
+        /\bif\s+one\s+of\s+(?:out|our)\s+friends?\s+reads?\s+these\s+texts?\b/gi,
+        /\btheyd?\s+probably\s+tell\s+either\s+one\s+of\s+us\s+to\s+stop\s+contacting\b/gi
+      ]
+    },
+    {
+      id: 30, ur: "تکنیکی رکاوٹوں یا غلط فہمیوں کا بہانہ بنانا (The Block/Unblock Obfuscation)",
+      en: "The Block/Unblock Accountability Escape",
+      whyUr: "جان بوجھ کر کیے جانے والے بلاک یا کاٹنے کے عمل کو تکنیکی غلطی یا زنائح/دوسروں کے نام پر ڈالنا۔",
+      whyEn: "Obfuscating intentional isolation tactics by rewriting communication cutoffs as mix-ups.",
+      actions: [
+        { ur: "عمل کی نیت کو پہچانیں، تکنیکی بہانوں پر دھیان نہ دیں۔",
+          en: "Look at the pattern of actions rather than accepting confusing technical excuses." }
+      ],
+      patterns: [
+        /\bi\s+thought\s+u\s+had\s+deactivated\s+again\b/gi,
+        /\bcaus?e\s+nabiha\s+told\s+me\s+to\s+prove\s+im\s+not\s+dating\b/gi
+      ]
+    },
+    {
+      id: 31, ur: "آپ کے دماغ یا ردِعمل کا خود تجزیہ کرنا (Unsolicited Psychological Diagnosis)",
+      en: "The Unsolicited Psychological Diagnosis",
+      whyUr: "آپ کو یہ سمجھانا کہ آپ کے اندر کیا چل رہا ہے اور آپ کو کیا کرنا چاہیے۔",
+      whyEn: "Explaining your reactions back to you to maintain intellectual superiority in the dynamic.",
+      actions: [
+        { ur: "آپ کے جذبات کو کوئی دوسرا آپ سے بہتر نہیں جانتا۔",
+          en: "Only you get to define your internal experience and healing pace." }
+      ],
+      patterns: [
+        /\bwhenever\s+i\s+do\s+this\s+i\s+get\s+avoidance\b/gi,
+        /\byou\s+cant?\s+just\s+keep\s+hanging\s+around\s+because\s+of\s+me\b/gi
+      ]
+    },
+    {
+      id: 32, ur: "مصنوعی امن اور روکھے پن کی پابندی (The 'Civil as Ever' Finality Illusion)",
+      en: "The Finality Illusion ('Civil as Ever')",
+      whyUr: "تمام مسائل کو حل کیے بغیر ایک زبردستی کے پرسکون اور مہذب ماحول کا حکم صادر کرنا۔",
+      whyEn: "Imposing a strict performance of civility to sweep unresolved wreckage under the rug.",
+      actions: [
+        { ur: "مہذب ہونے کا مطلب یہ نہیں کہ آپ اندرونی تکلیف کو دبا دیں۔",
+          en: "Civility should never be used as a requirement to suppress your legitimate emotional fallout." }
+      ],
+      patterns: [
+        /\bwell\s+keep\s+things?\s+as\s+civil\s+as\s+theyve?\s+ever\s+bbe?en\b/gi,
+        /\bif\s+we\s+continue\s+being\s+friends?\s+can\s+we\s+still\s+chat\s+normally\b/gi
+      ]
+    }
+  ];
+
+  var CRITICAL = { 7: true, 11: true };
+  var MAX_LEN = 20000;
+
+  /* ---------------------------- helpers ---------------------------- */
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+  function bi(ur, en, tag) {
+    tag = tag || "span";
+    return '<' + tag + ' class="ur" lang="ur" dir="rtl">' + ur + '</' + tag + '>' +
+           '<' + tag + ' class="en" lang="en">' + en + '</' + tag + '>';
+  }
+  // 1:1 character replacements so indexes in the normalised copy match the original text
+  function normalize(s) {
+    return s
+      .replace(/[\u2018\u2019\u201B\u02BC]/g, "'")
+      .replace(/[\u201C\u201D]/g, '"')
+      .replace(/\u064A/g, "\u06CC")
+      .replace(/\u0643/g, "\u06A9")
+      .replace(/\u0649/g, "\u06CC");
+  }
+
+  /* ---------------------------- analysis --------------------------- */
+  function analyze(text) {
+    text = String(text).slice(0, MAX_LEN);
+    var norm = normalize(text);
+    var ranges = [];
+    var found = {}; // id -> { phrases: [] }
+
+    FLAGS.forEach(function (flag) {
+      flag.patterns.forEach(function (re) {
+        var it = norm.matchAll(re), m;
+        while (!(m = it.next()).done) {
+          var hit = m.value;
+          if (!hit[0] || hit[0].length === 0) continue;
+          ranges.push({ s: hit.index, e: hit.index + hit[0].length, id: flag.id });
+          if (!found[flag.id]) found[flag.id] = { phrases: [] };
+          var p = text.slice(hit.index, hit.index + hit[0].length).replace(/\s+/g, " ").trim();
+          if (p.length > 70) p = p.slice(0, 67) + "…";
+          if (found[flag.id].phrases.indexOf(p) === -1) found[flag.id].phrases.push(p);
+        }
+      });
+    });
+
+    ranges.sort(function (a, b) { return a.s - b.s || b.e - a.e; });
+    var segs = [];
+    ranges.forEach(function (r) {
+      var last = segs[segs.length - 1];
+      if (last && r.s < last.e) {
+        if (r.e > last.e) last.e = r.e;
+        last.ids[r.id] = true;
+      } else {
+        var ids = {}; ids[r.id] = true;
+        segs.push({ s: r.s, e: r.e, ids: ids });
+      }
+    });
+
+    var html = "", pos = 0;
+    segs.forEach(function (seg) {
+      html += esc(text.slice(pos, seg.s));
+      var ids = Object.keys(seg.ids).map(Number).sort(function (a, b) { return a - b; });
+      html += '<mark class="hl">' + esc(text.slice(seg.s, seg.e)) + '<sup>' + ids.join(",") + '</sup></mark>';
+      pos = seg.e;
+    });
+    html += esc(text.slice(pos));
+
+    var ids = Object.keys(found).map(Number).sort(function (a, b) { return a - b; });
+    return { ids: ids, found: found, highlighted: html };
+  }
+
+  /* ---------------------------- rendering -------------------------- */
+  function render(result) {
+    var n = result.ids.length;
+    var level = n === 0 ? "none" : (n >= 3 || result.ids.some(function (i) { return CRITICAL[i]; }) ? "high" : "some");
+    var out = "";
+
+    var title, note;
+    if (n === 0) {
+      title = bi("کوئی درج شدہ نمونہ نہیں ملا", "None of the 32 listed patterns were found", "h3");
+      note = bi(
+        "اس کا مطلب یہ نہیں کہ صورتحال محفوظ ہے۔ کی-ورڈ اسکین لہجہ، پس منظر اور دباؤ نہیں سمجھ سکتا۔ اگر کچھ غلط لگ رہا ہے تو اپنے احساس پر بھروسہ کریں اور کسی قابلِ اعتماد شخص یا ہیلپ لائن سے بات کریں۔",
+        "That doesn’t mean the situation is safe. A keyword scan can’t read tone, context or pressure. If something feels wrong, trust that feeling and talk to someone you trust or a helpline.",
+        "div");
+    } else {
+      title = bi(
+        n + (n === 1 ? " سرخ جھنڈی ملی" : " سرخ جھنڈیاں ملیں"),
+        n + (n === 1 ? " red flag found" : " red flags found"),
+        "h3");
+      note = bi(
+        "یہ کنٹرول کرنے والے رویے کی علامات ہیں، کوئی تشخیص نہیں۔ نیچے ہر علامت کے ساتھ بتایا گیا ہے کہ آپ اپنے فون پر خود کو کیسے محفوظ رکھ سکتے ہیں۔",
+        "These are signs of controlling behaviour, not a diagnosis. Below, each flag comes with steps you can take on your own phone.",
+        "div");
+    }
+    out += '<div class="summary ' + level + '">' + title + '<div class="note">' + note + '</div>';
+    if (level === "high") {
+      out += '<div class="urgent">' + bi(
+        "<strong>اگر آپ کو فوری خطرہ ہے</strong> تو پولیس 15 پر کال کریں۔ بلیک میلنگ یا تصاویر کی دھمکی ہو تو NCCIA 1799 یا DRF 0800-39393 سے رابطہ کریں۔",
+        "<strong>If you are in immediate danger</strong>, call the police on 15. For blackmail or image threats, contact NCCIA (1799) or DRF (0800-39393).",
+        "div") + '</div>';
+    }
+    out += '</div>';
+
+    if (n > 0) {
+      out += '<p class="hl-title">' + bi("آپ کے متن میں نشان زد حصے", "Highlighted in your text", "span") + '</p>';
+      out += '<div class="hl-box" dir="auto">' + result.highlighted + '</div>';
+
+      result.ids.forEach(function (id) {
+        var f = FLAGS[id - 1];
+        out += '<article class="flag">';
+        out += '<div class="flag-head"><div class="badge">' + f.id + '</div><h4>' + bi(f.ur, f.en) + '</h4></div>';
+        out += '<div class="flag-body">';
+        out += '<div class="why">' + bi(f.whyUr, f.whyEn, "div") + '</div>';
+        var chips = result.found[id].phrases.slice(0, 4).map(function (p) { return '<span>' + esc(p) + '</span>'; }).join("");
+        out += '<div class="matched" aria-label="Matched phrases">' + chips + '</div>';
+        out += '<p class="todo-title">' + bi("اپنے فون پر کیا کریں", "What to do on your phone", "span") + '</p>';
+        out += '<ul class="todo">' + f.actions.map(function (a) { return '<li>' + bi(a.ur, a.en, "div") + '</li>'; }).join("") + '</ul>';
+        out += '</div></article>';
+      });
+
+      out += '<div class="callout" style="margin-top:16px">' + bi(
+        "ہر صورت میں: اسکرین شاٹ تاریخ و وقت سمیت لیں، بھیجنے والے کا نمبر/ہینڈل لکھیں، تحریری ٹائم لائن رکھیں، اور تھریڈ کبھی ڈیلیٹ نہ کریں۔ مدد کے لیے صفحے کے آخر میں ہیلپ لائنز دیکھیں۔",
+        "In every case: screenshot with date and time visible, record the sender’s number or handle, keep a written timeline, and never delete the thread. See the helplines at the bottom of the page.",
+        "div") + '</div>';
+    }
+    return out;
+  }
+
+  /* ---------------------------- wiring ----------------------------- */
+  function init() {
+    var input = document.getElementById("input");
+    var results = document.getElementById("results");
+    var count = document.getElementById("count");
+
+    function updateCount() { count.textContent = input.value.length + " / " + MAX_LEN; }
+
+    document.getElementById("analyzeBtn").addEventListener("click", function () {
+      var text = input.value.trim();
+      if (!text) {
+        results.innerHTML = '<div class="summary"><h3>' + bi("پہلے کچھ لکھیں", "Please paste or write something first", "span") + '</h3></div>';
+        return;
+      }
+      results.innerHTML = render(analyze(text));
+      results.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    document.getElementById("clearBtn").addEventListener("click", function () {
+      input.value = ""; results.innerHTML = ""; updateCount(); input.focus();
+    });
+
+    document.getElementById("exampleBtn").addEventListener("click", function () {
+      input.value =
+        "If you really loved me, you would share your live location with me.\n" +
+        "Give me your phone password, who are you texting?\n" +
+        "Delete this chat now. Don't tell anyone.\n" +
+        "I never said that, you're imagining things.\n" +
+        "Tum kuch nahi kar sakti. Warna main tumhari pics viral kar dunga.";
+      updateCount();
+    });
+
+    input.addEventListener("input", updateCount);
+
+    // Language switcher
+    var langBtns = document.querySelectorAll("[data-set-lang]");
+    Array.prototype.forEach.call(langBtns, function (b) {
+      b.addEventListener("click", function () {
+        document.body.setAttribute("data-lang", b.getAttribute("data-set-lang"));
+        Array.prototype.forEach.call(langBtns, function (x) {
+          x.setAttribute("aria-pressed", x === b ? "true" : "false");
+        });
+      });
+    });
+
+    // Quick exit: wipe the page state and leave immediately
+    function quickExit() {
+      try { input.value = ""; results.innerHTML = ""; } catch (e) {}
+      window.location.replace("https://www.google.com.pk/");
+    }
+    document.getElementById("quickExit").addEventListener("click", quickExit);
+    var lastEsc = 0;
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        var now = Date.now();
+        if (now - lastEsc < 700) quickExit();
+        lastEsc = now;
+      }
+    });
+
+    updateCount();
+  }
+
+  if (typeof document !== "undefined" && document.getElementById && typeof module === "undefined") {
+    init();
+  }
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = { FLAGS: FLAGS, analyze: analyze, normalize: normalize, render: render };
+  }
+})();
+</script>
+</body> 	
+</html>
